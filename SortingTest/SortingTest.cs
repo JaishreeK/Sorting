@@ -11,11 +11,20 @@ namespace Sorting
 
         }
 
+        //[TestMethod]
+        //public void TestCountSwaps()
+        //{
+        //    int[] a = new int[] { 6, 4, 1 };
+        //    Program.countSwaps(a);
+        //}
+
         [TestMethod]
-        public void TestCountSwaps()
+        public void TestJumpingOnClouds()
         {
-            int[] a = new int[] { 6, 4, 1 };
-            Program.countSwaps(a);
+            int[] a = new int[] { 0, 0, 1, 0, 0, 1, 0 };
+            Program.jumpingOnClouds(a);
         }
     }
+
+
 }

@@ -39,5 +39,49 @@ namespace Sorting
             a = b;
             b = temp;
         }
+
+        // Complete the countingValleys function below.
+        public static int countingValleys(int n, string s)
+        {
+            int countValley = 0;
+
+            int lvl = 0;   // current level
+            foreach (char ch in s)
+            {
+                if (ch == 'U') ++lvl;
+                if (ch == 'D') --lvl;
+
+                // if we just came UP to sea level
+                if (lvl == 0 && ch == 'U')
+                    ++countValley;
+            }           
+            return countValley;
+        }
+
+        // Complete the jumpingOnClouds function below.
+        public static int jumpingOnClouds(int[] c)
+        {
+            int n = c.Length;
+            int minJumps = 0;
+            int first = c[0];
+            int i = 1;
+            while (i < n)
+            {
+                if (i + 1 < n)
+                {
+                    if (c[i + 1] == 0)
+                    {
+                        minJumps++;
+                        i += 2;
+                        continue;
+                    }
+                }
+                i++;
+                minJumps++;
+            }
+            return minJumps;
+
+        }
+
     }
 }
