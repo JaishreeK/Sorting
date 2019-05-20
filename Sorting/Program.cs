@@ -83,5 +83,38 @@ namespace Sorting
 
         }
 
+        // Complete the repeatedString function below.
+        public static long repeatedString(string s, long n)
+        {
+            int len = s.Length;
+            int cnt = 0;
+            long repeats = 1, finalCnt;
+
+            if (len > 1)
+            {
+                repeats = (long)n / len;           
+
+                cnt = s.Split('a').Length - 1;
+                finalCnt = cnt * repeats;
+
+                int rem = (int)n % len;
+                string rems = s.Substring(0, rem);
+                int remCnt = rems.Split('a').Length - 1;
+
+                finalCnt = finalCnt + remCnt;
+                return finalCnt;
+
+            }
+            else
+            {
+                if ((s == "a")&&(len==1))
+                {
+                    return n;
+                }
+                else
+                    return 0;
+            }
+        }
+
     }
 }
