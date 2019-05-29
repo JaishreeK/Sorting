@@ -18,11 +18,21 @@ namespace Sorting
         //    Program.countSwaps(a);
         //}
 
+        //[TestMethod]
+        //public void TestJumpingOnClouds()
+        //{
+        //    int[] a = new int[] { 0, 0, 1, 0, 0, 1, 0 };
+        //    Program.jumpingOnClouds(a);
+        //}
+
+        //7 50
+        //1 12 5 111 200 1000 10
+
         [TestMethod]
-        public void TestJumpingOnClouds()
+        public void TestMaximumToys()
         {
-            int[] a = new int[] { 0, 0, 1, 0, 0, 1, 0 };
-            Program.jumpingOnClouds(a);
+            int[] a = new int[] { 1, 12, 5, 111, 200, 1000, 10 };
+            Program.maximumToys(a,50);
         }
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Sorting
 {
@@ -116,5 +117,87 @@ namespace Sorting
             }
         }
 
+        // Complete the maximumToys function below.
+        public static int maximumToys(int[] prices, int k)
+        { 
+            int n = prices.Length;            
+            int[] cntToys = new int[n];
+            long sum = 0;
+            //initialise cntToys array to 0
+            for(int i=0;i<n;i++)
+            {
+                cntToys[i] = 0;
+            }
+
+            for (int m = 0; m < n; m++)
+            {
+                sum = prices[m];
+                for (int i = m; i < n; i++)
+                {
+                    sum = sum + prices[i];
+                    if (sum > k)
+                    {
+                        sum = sum - prices[i];
+                    }
+                    else
+                    {
+                        cntToys[m]++;
+                    }
+                }
+            }
+                  
+
+            //find the max of the cntToys Array
+            int maxCnt = cntToys[0];
+            if (cntToys.Length > 1)
+            {                
+                for (int i = 1; i < cntToys.Length; i++)
+                {
+                    if (maxCnt < cntToys[i])
+                        maxCnt = cntToys[i];
+                }
+            }      
+
+            return maxCnt;
+        }
+
+
+        // Complete the maximumToys function below.
+        public static int maximumToys2(int[] prices, int k)
+        {
+            int n = prices.Length;
+            Array.Sort(prices);           
+            int count = 0;
+            for (int i = 0; i < prices.Length; i++)
+            {
+                if (prices[i] <= k)
+                {
+                    k -= prices[i];
+                    count++;
+                }
+            }
+            return count;           
+        }
+
+
+        public static int alphaBeta(List<int> pile)
+        {
+            int n = pile.Count;
+            int betaPick = 0;
+
+            if (n > 1)
+            {
+                pile.Sort();
+                int top = pile[n - 1];
+
+                pile.RemoveAll(x => x == top);
+                n = pile.Count;
+                if(n>=1)
+                    betaPick = pile[n - 1];
+            }
+
+            return betaPick;
+
+        }
     }
 }
