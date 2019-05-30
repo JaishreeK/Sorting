@@ -200,4 +200,28 @@ namespace Sorting
 
         }
     }
+
+    public class Checker : IComparable<Player>
+    {
+        public Player p1;
+
+        public Checker(Player p1)
+        {
+            this.p1 = p1;
+        }
+
+        public int CompareTo(Player p2)
+        {
+            if (p1.score > p2.score)
+                return 1;
+            else if (p1.score == p2.score)
+            {
+                return string.Compare(p1.name, p2.name);               
+            }
+            else
+                return -1;
+        }        
+    }
+
+
 }
