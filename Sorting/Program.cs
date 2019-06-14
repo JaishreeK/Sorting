@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace Sorting
 {
@@ -7,7 +8,12 @@ namespace Sorting
     {
         static void Main(string[] args)
         {
+            String location;
+            DateTime time;
+
             Console.WriteLine("Hello World!");
+            Console.WriteLine(location == null ? "location is null" : location);
+            Console.WriteLine(time == null ? "time is null" : time.ToString());
         }
 
         // Complete the countSwaps function below.
@@ -87,20 +93,20 @@ namespace Sorting
         // Complete the repeatedString function below.
         public static long repeatedString(string s, long n)
         {
-            int len = s.Length;
-            int cnt = 0;
+            long len = s.Length;
+            long cnt = 0;
             long repeats = 1, finalCnt;
 
             if (len > 1)
             {
-                repeats = (long)n / len;           
+                repeats = (long)Math.Floor(n / len);           
 
                 cnt = s.Split('a').Length - 1;
                 finalCnt = cnt * repeats;
 
-                int rem = (int)n % len;
-                string rems = s.Substring(0, rem);
-                int remCnt = rems.Split('a').Length - 1;
+               long rem = (long)n % len;
+                string rems = s.Substring(0,(int)rem);
+                long remCnt = rems.Split('a').Length - 1;
 
                 finalCnt = finalCnt + remCnt;
                 return finalCnt;
