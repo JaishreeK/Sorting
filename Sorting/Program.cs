@@ -12,8 +12,8 @@ namespace Sorting
             DateTime time;
 
             Console.WriteLine("Hello World!");
-            Console.WriteLine(location == null ? "location is null" : location);
-            Console.WriteLine(time == null ? "time is null" : time.ToString());
+            //Console.WriteLine(location == null ? "location is null" : location);
+           // Console.WriteLine(time == null ? "time is null" : time.ToString());
         }
 
         // Complete the countSwaps function below.
@@ -99,7 +99,7 @@ namespace Sorting
 
             if (len > 1)
             {
-                repeats = (long)Math.Floor(n / len);           
+                repeats = (long)Math.Floor((decimal)n / len);           
 
                 cnt = s.Split('a').Length - 1;
                 finalCnt = cnt * repeats;
@@ -205,7 +205,156 @@ namespace Sorting
             return betaPick;
 
         }
+
+        //    5 4
+        //1 2 3 4 4
+        // Complete the activityNotifications function below.
+        public static int activityNotifications(int[] expenditure, int d)
+        {
+            int n = expenditure.Length;
+            int[] shortExp = new int[d];
+            int cntNotice = 0;
+            int[] freqArray = new int[201];
+            bool first_time = true;
+            int pop_element = 0;
+            for (int i = d; i < n; i++)
+            {
+                if (first_time)
+                {
+                    first_time = false;
+                    for (int j = i - d; j <= i - 1; j++)
+                        freqArray[expenditure[j]]++;
+                }
+                else
+                {
+                    freqArray[pop_element]--;
+                    freqArray[expenditure[i - 1]]++;
+                }
+                int median = getMedian(freqArray, d);
+                if (d % 2 == 0)
+                {
+                    if (expenditure[i] >= median)
+                        cntNotice++;
+                }
+                else
+                {
+                    if (expenditure[i] >= 2 * median)
+                        cntNotice++;
+                }
+                pop_element = expenditure[i - d];               
+            }
+            return cntNotice;
+
+        }
+
+        public static int getMedian(int[] freq, int d)
+        {
+            int[] prefix_sum = new int[201];
+            prefix_sum[0] = freq[0];
+            for (int i = 1; i < 201; i++)
+            {
+                prefix_sum[i] = prefix_sum[i - 1] + freq[i];
+            }
+            int median;
+            int a = 0;
+            int b = 0;
+            if (d % 2 == 0)
+            {
+                int first = d / 2;
+                int second = first + 1;
+                int i = 0;
+                for (; i < 201; i++)
+                {
+                    if (first <= prefix_sum[i])
+                    {
+                        a = i;
+                        break;
+                    }
+                }
+                for (; i < 201; i++)
+                {
+                    if (second <= prefix_sum[i])
+                    {
+                        b = i;
+                        break;
+                    }
+                }
+
+            }
+            else
+            {
+                int first = d / 2 + 1;
+                for (int i = 0; i < 201; i++)
+                {
+                    if (first <= prefix_sum[i])
+                    {
+                        a = i;
+                        break;
+                    }
+                }
+            }
+            median = a + b;
+            return median;
+        }
+
+
+        //int n = expenditure.Length;
+        //int[] shortExp = new int[d];
+        //int cntNotice = 0;           
+        //    for (int i = d; i<n; i++)
+        //    {
+        //        decimal median;
+        //Array.Copy(expenditure, i - d, shortExp, 0, d);
+        //        Array.Sort(shortExp);
+        //        int midIndex = (int)(Math.Floor((decimal)shortExp.Length / 2));
+        //        if (shortExp.Length % 2 != 0)
+        //        {
+        //            median= shortExp[midIndex];
+        //        }
+        //        else
+        //        {
+        //            median=((shortExp[midIndex] + shortExp[midIndex + 1]) / 2);
+        //        }                
+        //        if(expenditure[d] >= 2* median)
+        //        {
+        //            cntNotice++;
+        //        }
+        //    }
+        //    return cntNotice;
+
+        private static decimal getMedian(int[] shortExp)
+        {
+            Array.Sort(shortExp);
+            int midIndex = (int)(Math.Floor((decimal)shortExp.Length / 2));
+            if (shortExp.Length %2 != 0)
+            {              
+               return shortExp[midIndex];
+            }
+            else
+            {
+                return ((shortExp[midIndex] + shortExp[midIndex + 1]) / 2);                
+            }            
+        }
+
+        public static int MissingLeastInteger(int[] A)
+        {
+            int num = 1;
+            List<int> listA = new List<int>(A);
+            listA.RemoveAll(x => x < 0);
+            while (listA.Count > 0)
+            {
+                if (listA.Find(x => x == num) > 0)
+                {
+                    listA.RemoveAll(x => x == num);
+                    num++;
+                }
+                else break;
+            }
+            return num;
+        }
     }
+
+
 
     public class Checker : IComparable<Player>
     {
@@ -228,6 +377,9 @@ namespace Sorting
                 return -1;
         }        
     }
+
+   
+
 
 
 }
