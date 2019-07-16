@@ -8,8 +8,8 @@ namespace Sorting
     {
         static void Main(string[] args)
         {
-            String location;
-            DateTime time;
+            //String location;
+            //DateTime time;
 
             Console.WriteLine("Hello World!");
             //Console.WriteLine(location == null ? "location is null" : location);
@@ -352,10 +352,35 @@ namespace Sorting
             }
             return num;
         }
+
+        public static int Insert5toGetMaxNo(int N)
+        {            
+            bool negative = false;
+
+            if (N < 0)
+                negative = true;
+
+            string s = Math.Abs(N).ToString();
+
+            int max = Int32.Parse(s.Insert(0, "5"));
+            if (negative)
+                max = max * -1;
+
+            for (int i = 1; i < s.Length; i++)
+            {
+                string s1 = s.Insert(i, "5");
+                int maxTemp = Int32.Parse(s1);
+
+                if (negative)               
+                    maxTemp = -1 * maxTemp;                    
+                
+                if (max < maxTemp)
+                    max = maxTemp;
+            }         
+            return max;
+        }
     }
-
-
-
+        
     public class Checker : IComparable<Player>
     {
         public Player p1;
@@ -375,11 +400,8 @@ namespace Sorting
             }
             else
                 return -1;
-        }        
+        }
+
+        
     }
-
-   
-
-
-
 }
