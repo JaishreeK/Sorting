@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Sorting;
 
 namespace Sorting
 {
@@ -72,6 +73,16 @@ namespace Sorting
         {
             int r = Program.Insert5toGetMaxNo(-999);
             Assert.AreEqual(-5999, r);
+        }
+
+        [TestMethod()]
+        public void countInversionsTest1()
+        {
+            int[] arr1 = new int[] { 1, 1, 1, 2, 2 };
+            long r1 = Program.countInversions(arr1);
+            int[] arr2 = new int[] { 2, 1, 3, 1, 2 };
+            long r2 = Program.countInversions(arr2);
+            Assert.IsTrue((r1==0) && (r2==4));
         }
     }
 

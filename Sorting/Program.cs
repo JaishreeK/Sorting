@@ -206,8 +206,6 @@ namespace Sorting
 
         }
 
-        //    5 4
-        //1 2 3 4 4
         // Complete the activityNotifications function below.
         public static int activityNotifications(int[] expenditure, int d)
         {
@@ -378,6 +376,34 @@ namespace Sorting
                     max = maxTemp;
             }         
             return max;
+        }
+
+        // Complete the countInversions function below.
+        public static long countInversions(int[] arr)
+        {
+            long nSwaps = 0;
+            long n = arr.LongLength;
+
+            for(int i =0;i<n;i++)
+            {
+                for(int j=i+1;j<n;j++)
+                {
+                    if (arr[i] > arr[j])
+                    {
+                        swap(arr, i, j);
+                        nSwaps++;
+                    }
+                }
+            }
+            return nSwaps;
+        }
+
+        private static void swap(int[] array, int index1, int index2)
+        {
+            int temp;
+            temp = array[index1];
+            array[index1] = array[index2];
+            array[index2] = temp;
         }
     }
         
